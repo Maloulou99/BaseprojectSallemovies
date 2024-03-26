@@ -17,7 +17,12 @@ public class Movie {
     private String extract;
     private String thumbnail;
 
-    public Movie(){
+    public Movie(String title, List<String> genres, double review, int length, String thumbnail) {
+        this.title = title;
+        this.genres = genres;
+        this.review = review;
+        this.length = length;
+        this.thumbnail = thumbnail;
     }
 
     public Movie(String title, int year, List<String> cast,

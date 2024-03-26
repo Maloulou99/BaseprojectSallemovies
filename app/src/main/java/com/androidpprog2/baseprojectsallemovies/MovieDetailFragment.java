@@ -44,7 +44,6 @@ public class MovieDetailFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        // Initialize views
         textViewTitle = view.findViewById(R.id.textViewTitle);
         textViewYear = view.findViewById(R.id.textViewYear);
         textViewGenres = view.findViewById(R.id.textViewGenres);

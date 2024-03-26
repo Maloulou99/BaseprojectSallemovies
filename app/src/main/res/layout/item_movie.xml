@@ -50,6 +50,7 @@
         app:layout_constraintTop_toBottomOf="@id/textViewReview" />
 
     <TextView
+        android:id="@+id/textViewDuration"
         android:layout_width="144dp"
         android:layout_height="27dp"
         android:layout_marginTop="8dp"
