@@ -1,0 +1,20 @@
+<resources>
+    <string name="app_name">BaseprojectSallemovies</string>
+    <string name="titleMain">Sallemovies</string>
+    <string name="description">Description</string>
+    <string name="length">Duration</string>
+    <string name="language">Language</string>
+    <string name="year">Year</string>
+    <string name="cast">Cast</string>
+    <string name="poster">Movie Poster</string>
+    <string name="movie_name">Movie Name</string>
+    <string name="movie_rating">Movie Rating</string>
+    <string name="movie_genres">Movie Genre</string>
+    <string name="movie_duration">Movie Duration</string>
+    <string name="movie_language">Movie Language</string>
+    <string name="movie_release_date">Movie Release Date</string>
+    <string name="movie_description">Movie Description</string>
+    <string name="movie_actors">Movie Actors</string>
+    <string name="movie_year">Movie Year</string>
+
+</resources>
