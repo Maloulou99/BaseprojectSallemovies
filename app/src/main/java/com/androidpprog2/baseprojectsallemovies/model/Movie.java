@@ -1,12 +1,9 @@
 package com.androidpprog2.baseprojectsallemovies.model;
 
-import org.json.JSONArray;
-import org.json.JSONObject;
-
-import java.util.ArrayList;
+import java.io.Serializable;
 import java.util.List;
 
-public class Movie {
+public class Movie implements Serializable {
     private String title;
     private int year;
     private List<String> cast;
@@ -44,72 +41,38 @@ public class Movie {
         return title;
     }
 
-    public void setTitle(String title) {
-        this.title = title;
-    }
-
     public int getYear() {
         return year;
-    }
-
-    public void setYear(int year) {
-        this.year = year;
     }
 
     public List<String> getCast() {
         return cast;
     }
 
-    public void setCast(List<String> cast) {
-        this.cast = cast;
-    }
-
     public List<String> getGenres() {
         return genres;
     }
 
-    public void setGenres(List<String> genres) {
-        this.genres = genres;
+    public String getLengthAsString() {
+        int hours = length / 60;
+        int minutes = length % 60;
+        return hours + "h " + minutes + "min";
     }
 
-    public int getLength() {
-        return length;
-    }
-
-    public void setLength(int length) {
-        this.length = length;
-    }
-
-    public double getReview() {
-        return review;
-    }
-
-    public void setReview(double review) {
-        this.review = review;
+    public String getReview() {
+        return review + "/10";
     }
 
     public String getLanguage() {
         return language;
     }
 
-    public void setLanguage(String language) {
-        this.language = language;
-    }
-
     public String getExtract() {
         return extract;
     }
 
-    public void setExtract(String extract) {
-        this.extract = extract;
-    }
-
     public String getThumbnail() {
         return thumbnail;
-    }
-
-    public void setThumbnail(String thumbnail) {
-        this.thumbnail = thumbnail;
     }
 
 }

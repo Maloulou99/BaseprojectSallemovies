@@ -9,7 +9,7 @@
     <ImageView
         android:id="@+id/imageViewThumbnail"
         android:layout_width="100dp"
-        android:layout_height="100dp"
+        android:layout_height="120dp"
         android:layout_marginTop="36dp"
         android:scaleType="centerCrop"
         app:layout_constraintEnd_toEndOf="parent"
@@ -21,16 +21,19 @@
         android:id="@+id/textViewTitle"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
         android:textSize="18sp"
         android:textColor="@android:color/black"
         android:text="Movie Title"
+        android:textStyle="bold"
         app:layout_constraintStart_toEndOf="@id/imageViewThumbnail"
         app:layout_constraintTop_toTopOf="@id/imageViewThumbnail" />
 
     <TextView
-        android:id="@+id/textViewReview"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
         android:drawableStart="@drawable/star_yellow"
         android:numStars="5"
         android:rating="3.5"
@@ -39,25 +42,45 @@
         app:layout_constraintTop_toBottomOf="@id/textViewTitle" />
 
     <TextView
-        android:id="@+id/textViewGenres"
+        android:id="@+id/textViewReview"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="40dp"
+        android:layout_marginTop="12dp"
+        android:text="@string/movie_rating"
+        app:layout_constraintStart_toEndOf="@id/imageViewThumbnail"
+        app:layout_constraintTop_toBottomOf="@id/textViewTitle" />
+
+    <TextView
+        android:id="@+id/textViewGenre"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
-        android:textColor="@android:color/white"
-        android:text="Genre"
         android:background="@drawable/round_text_genre"
+        android:text="Genre"
+        android:textColor="#7676F3"
         app:layout_constraintStart_toEndOf="@id/imageViewThumbnail"
         app:layout_constraintTop_toBottomOf="@id/textViewReview" />
 
     <TextView
-        android:id="@+id/textViewDuration"
-        android:layout_width="144dp"
-        android:layout_height="27dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:drawableStart="@drawable/clock"
+        app:layout_constraintStart_toEndOf="@id/imageViewThumbnail"
+        app:layout_constraintTop_toBottomOf="@id/textViewGenre" />
+
+    <TextView
+        android:id="@+id/textViewDuration"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="40dp"
+        android:layout_marginTop="12dp"
         android:text="@string/movie_duration"
         app:layout_constraintStart_toEndOf="@id/imageViewThumbnail"
-        app:layout_constraintTop_toBottomOf="@id/textViewGenres" />
+        app:layout_constraintTop_toBottomOf="@id/textViewGenre" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

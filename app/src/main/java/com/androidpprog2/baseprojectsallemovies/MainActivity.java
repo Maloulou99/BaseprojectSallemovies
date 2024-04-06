@@ -4,9 +4,13 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 
-public class MainActivity extends AppCompatActivity {
+import com.androidpprog2.baseprojectsallemovies.model.Movie;
+
+public class MainActivity extends AppCompatActivity implements MovieRecyclerView.OnMovieClickListener {
     private RecyclerView recyclerView;
     private MovieRecyclerView movieRecyclerView;
 
@@ -18,9 +22,15 @@ public class MainActivity extends AppCompatActivity {
         recyclerView = findViewById(R.id.recyclerViewMovies);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
-        // Pass the context of MainActivity to MovieRecyclerView constructor
         movieRecyclerView = new MovieRecyclerView(this);
-        recyclerView.setAdapter(movieRecyclerView.getAdapter());
+        movieRecyclerView.setOnMovieClickListener(this);
+        recyclerView.setAdapter(movieRecyclerView);
     }
 
+    @Override
+    public void onMovieClick(Movie movie) {
+        Intent intent = new Intent(this, MovieDetailActivity.class);
+        intent.putExtra("movie", movie);
+        startActivity(intent);
+    }
 }

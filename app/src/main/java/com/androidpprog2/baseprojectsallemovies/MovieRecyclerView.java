@@ -1,18 +1,19 @@
 package com.androidpprog2.baseprojectsallemovies;
 
 import android.content.Context;
+import android.content.Intent;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.net.Uri;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.androidpprog2.baseprojectsallemovies.model.Movie;
+import com.squareup.picasso.Picasso;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -25,11 +26,21 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class MovieRecyclerView extends RecyclerView.Adapter<MovieRecyclerView.ViewHolder> {
-
     private List<Movie> movieList;
+    private Context context;
+    private OnMovieClickListener onMovieClickListener;
 
     public MovieRecyclerView(Context context) {
+        this.context = context;
         movieList = loadMovieData(context);
+    }
+
+    public interface OnMovieClickListener {
+        void onMovieClick(Movie movie);
+    }
+
+    public void setOnMovieClickListener(OnMovieClickListener listener) {
+        this.onMovieClickListener = listener;
     }
 
     @NonNull
@@ -42,12 +53,37 @@ public class MovieRecyclerView extends RecyclerView.Adapter<MovieRecyclerView.Vi
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         Movie movie = movieList.get(position);
-        holder.imageViewThumbnail.setImageURI(Uri.parse(movie.getThumbnail()));
+        Picasso.get().load(movie.getThumbnail()).into(holder.imageViewThumbnail);
         holder.textViewTitle.setText(movie.getTitle());
-        holder.textViewDuration.setText(String.valueOf(movie.getLength()));
-        holder.textViewGenre.setText(TextUtils.join(" ", movie.getGenres()));
+        holder.textViewDuration.setText(String.valueOf(movie.getLengthAsString()));
+        holder.textViewGenre.setText(String.join(", ", movie.getGenres()));
         holder.textViewReview.setText(String.valueOf(movie.getReview()));
+
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                int position = holder.getAdapterPosition();
+                if (position != RecyclerView.NO_POSITION) {
+                    Movie selectedMovie = movieList.get(position);
+                    if (onMovieClickListener != null) {
+                        Intent intent = new Intent(context, MovieDetailActivity.class);
+                        intent.putExtra("title", selectedMovie.getTitle());
+                        intent.putExtra("year", selectedMovie.getYear());
+                        intent.putExtra("cast", TextUtils.join(", ", selectedMovie.getCast()));
+                        intent.putExtra("genres", TextUtils.join(", ", selectedMovie.getGenres()));
+                        intent.putExtra("length", selectedMovie.getLengthAsString());
+                        intent.putExtra("review", selectedMovie.getReview());
+                        intent.putExtra("language", selectedMovie.getLanguage());
+                        intent.putExtra("extract", selectedMovie.getExtract());
+                        intent.putExtra("thumbnail", selectedMovie.getThumbnail());
+
+                        context.startActivity(intent);
+                    }
+                }
+            }
+        });
     }
+
 
     @Override
     public int getItemCount() {
@@ -58,7 +94,6 @@ public class MovieRecyclerView extends RecyclerView.Adapter<MovieRecyclerView.Vi
         ImageView imageViewThumbnail;
         TextView textViewTitle;
         TextView textViewReview;
-        TextView textViewGenres;
         TextView textViewGenre;
         TextView textViewDuration;
 
@@ -67,31 +102,23 @@ public class MovieRecyclerView extends RecyclerView.Adapter<MovieRecyclerView.Vi
             imageViewThumbnail = itemView.findViewById(R.id.imageViewThumbnail);
             textViewTitle = itemView.findViewById(R.id.textViewTitle);
             textViewReview = itemView.findViewById(R.id.textViewReview);
-            textViewGenres = itemView.findViewById(R.id.textViewGenres);
+            textViewGenre = itemView.findViewById(R.id.textViewGenre);
             textViewDuration = itemView.findViewById(R.id.textViewDuration);
         }
     }
 
-    // Method to load movie data from JSON file
     private List<Movie> loadMovieData(Context context) {
         List<Movie> movieList = new ArrayList<>();
         try {
-            // Read JSON file from assets
             InputStream is = context.getAssets().open("movies.json");
             int size = is.available();
             byte[] buffer = new byte[size];
             is.read(buffer);
             is.close();
             String json = new String(buffer, StandardCharsets.UTF_8);
-
-            // Parse JSON data
             JSONArray jsonArray = new JSONArray(json);
-
-            // Iterate through each movie in the JSON array
             for (int i = 0; i < jsonArray.length(); i++) {
                 JSONObject jsonObject = jsonArray.getJSONObject(i);
-
-                // Extract movie data
                 String title = jsonObject.getString("title");
                 JSONArray genresArray = jsonObject.getJSONArray("genres");
                 List<String> genres = new ArrayList<>();
@@ -100,9 +127,7 @@ public class MovieRecyclerView extends RecyclerView.Adapter<MovieRecyclerView.Vi
                 }
                 int length = jsonObject.getInt("length");
                 double review = jsonObject.getDouble("review");
-                String thumbnail = jsonObject.getString("thumbnail"); // Assuming thumbnail is stored as resource ID
-
-                // Create Movie object and add it to the list
+                String thumbnail = jsonObject.getString("thumbnail");
                 movieList.add(new Movie(title, genres, review, length, thumbnail));
             }
         } catch (IOException | JSONException e) {
@@ -111,8 +136,4 @@ public class MovieRecyclerView extends RecyclerView.Adapter<MovieRecyclerView.Vi
         return movieList;
     }
 
-    // Method to provide the adapter instance
-    public RecyclerView.Adapter<MovieRecyclerView.ViewHolder> getAdapter() {
-        return this;
-    }
 }

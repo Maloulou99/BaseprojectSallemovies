@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MovieDetailFragment">
+    tools:context=".MovieDetailActivity">
 
     <Button
         android:id="@+id/backButton"
@@ -58,6 +58,7 @@
         android:layout_marginTop="24dp"
         android:background="@drawable/round_text_genre"
         android:text="@string/movie_genres"
+        android:textColor="#7676F3"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/textViewReview" />
