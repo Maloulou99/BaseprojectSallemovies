@@ -56,7 +56,7 @@ public class MovieRecyclerView extends RecyclerView.Adapter<MovieRecyclerView.Vi
         Picasso.get().load(movie.getThumbnail()).into(holder.imageViewThumbnail);
         holder.textViewTitle.setText(movie.getTitle());
         holder.textViewDuration.setText(String.valueOf(movie.getLengthAsString()));
-        holder.textViewGenre.setText(String.join(", ", movie.getGenres()));
+        holder.textViewGenre.setText(String.valueOf(movie.getGenres()));
         holder.textViewReview.setText(String.valueOf(movie.getReview()));
 
         holder.itemView.setOnClickListener(new View.OnClickListener() {
@@ -67,21 +67,13 @@ public class MovieRecyclerView extends RecyclerView.Adapter<MovieRecyclerView.Vi
                     Movie selectedMovie = movieList.get(position);
                     if (onMovieClickListener != null) {
                         Intent intent = new Intent(context, MovieDetailActivity.class);
-                        intent.putExtra("title", selectedMovie.getTitle());
-                        intent.putExtra("year", selectedMovie.getYear());
-                        intent.putExtra("cast", TextUtils.join(", ", selectedMovie.getCast()));
-                        intent.putExtra("genres", TextUtils.join(", ", selectedMovie.getGenres()));
-                        intent.putExtra("length", selectedMovie.getLengthAsString());
-                        intent.putExtra("review", selectedMovie.getReview());
-                        intent.putExtra("language", selectedMovie.getLanguage());
-                        intent.putExtra("extract", selectedMovie.getExtract());
-                        intent.putExtra("thumbnail", selectedMovie.getThumbnail());
-
+                        intent.putExtra("movie_title", selectedMovie.getTitle());
                         context.startActivity(intent);
                     }
                 }
             }
         });
+
     }
 
 

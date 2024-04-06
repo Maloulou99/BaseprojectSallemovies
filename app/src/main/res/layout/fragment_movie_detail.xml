@@ -13,7 +13,6 @@
         android:layout_marginTop="40dp"
         android:layout_marginEnd="332dp"
         android:drawableStart="@drawable/arrow_back"
-        android:background="@android:color/transparent"
         android:drawablePadding="8dp"
         android:textSize="24sp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -43,25 +42,50 @@
         android:id="@+id/textViewReview"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:drawableStart="@drawable/star_yellow"
         android:drawablePadding="8dp"
         app:layout_constraintTop_toBottomOf="@id/textViewTitle"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        android:textColor="#B9B9C8"
         android:layout_marginTop="8dp"
         android:text="@string/movie_rating" />
+
+    <TextView
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        android:layout_marginTop="8dp"
+        android:drawableStart="@drawable/star_yellow"
+        android:drawablePadding="8dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.35"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/textViewTitle" />
 
     <TextView
         android:id="@+id/textViewGenres"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="24dp"
+        android:layout_marginTop="4dp"
         android:background="@drawable/round_text_genre"
         android:text="@string/movie_genres"
         android:textColor="#7676F3"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.496"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/textViewReview" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:text="Year"
+        app:layout_constraintBottom_toTopOf="@+id/textViewYear"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:textColor="#B9B9C8"
+        app:layout_constraintHorizontal_bias="0.48"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/textViewGenres"
+        app:layout_constraintVertical_bias="1.0" />
 
     <TextView
         android:id="@+id/textViewYear"
@@ -75,6 +99,18 @@
         app:layout_constraintTop_toBottomOf="@id/textViewGenres" />
 
     <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="28dp"
+        android:layout_marginTop="20dp"
+        android:text="Duration"
+        android:textColor="#B9B9C8"
+        app:layout_constraintBottom_toTopOf="@+id/textViewLength"
+        app:layout_constraintStart_toEndOf="@id/textViewYear"
+        app:layout_constraintTop_toBottomOf="@id/textViewGenres"
+        app:layout_constraintVertical_bias="1.0" />
+
+    <TextView
         android:id="@+id/textViewLength"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -83,6 +119,19 @@
         android:text="@string/movie_duration"
         app:layout_constraintStart_toEndOf="@id/textViewYear"
         app:layout_constraintTop_toBottomOf="@id/textViewGenres" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:text="Language"
+        android:textColor="#B9B9C8"
+        app:layout_constraintBottom_toTopOf="@+id/textViewLanguage"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.131"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/textViewGenres"
+        app:layout_constraintVertical_bias="1.0" />
 
     <TextView
         android:id="@+id/textViewLanguage"
@@ -96,13 +145,50 @@
         app:layout_constraintTop_toBottomOf="@id/textViewGenres" />
 
     <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="Description"
+        android:textColor="#9C27B0"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.05"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/textViewLanguage" />
+
+    <TextView
         android:id="@+id/textViewExtract"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@id/textViewLanguage"
-        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginTop="48dp"
+        android:text="@string/movie_description"
+        android:textColor="#B9B9C8"
         app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginTop="8dp"
-        android:text="@string/movie_description" />
+        app:layout_constraintHorizontal_bias="0.053"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/textViewLanguage" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="36dp"
+        android:text="Cast"
+        android:textColor="#9C27B0"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.044"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/textViewExtract" />
+
+    <TextView
+        android:id="@+id/textViewCast"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="68dp"
+        android:background="@drawable/round_text_genre"
+        android:text="@string/movie_actors"
+        android:textColor="#7676F3"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.051"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/textViewExtract" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
